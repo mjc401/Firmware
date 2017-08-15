@@ -39,6 +39,7 @@ px4_add_module(
 	STACK_MAIN 1200
 	STACK_MAX 1500
 	COMPILE_FLAGS
+		-Os
 	SRCS
 		mavlink.c
 		mavlink_main.cpp
@@ -54,6 +55,7 @@ px4_add_module(
 		mavlink_shell.cpp
 		mavlink_ulog.cpp
 		mavlink_command_sender.cpp
+		cmu_mavlink.cpp
 	DEPENDS
 		platforms__common
 	)

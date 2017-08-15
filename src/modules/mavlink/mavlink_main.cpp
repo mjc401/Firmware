@@ -277,7 +277,9 @@ Mavlink::Mavlink() :
 
 	/* performance counters */
 	_loop_perf(perf_alloc(PC_ELAPSED, "mavlink_el")),
-	_txerr_perf(perf_alloc(PC_COUNT, "mavlink_txe"))
+	_txerr_perf(perf_alloc(PC_COUNT, "mavlink_txe")),
+	/* custom message handler */
+	_cmu_mavlink(nullptr)
 {
 	_instance_id = Mavlink::instance_count();
 
@@ -1248,6 +1250,9 @@ Mavlink::handle_message(const mavlink_message_t *msg)
 	 *  NOTE: this is called from the receiver thread
 	 */
 
+	/* handle custom dialect packets */
+  _cmu_mavlink->handle_message(msg);
+
 	if (get_forwarding_on()) {
 		/* forward any messages to other mavlink instances */
 		Mavlink::forward_message(msg, this);
@@ -1982,6 +1987,9 @@ Mavlink::task_main(int argc, char *argv[])
 		configure_stream("COMMAND_LONG", 100.0f);
 
 	}
+
+	_cmu_mavlink = (CMUMavlink *) CMUMavlink::new_instance(this);
+	_cmu_mavlink->set_system_id(mavlink_system.sysid);
 
 	switch (_mode) {
 	case MAVLINK_MODE_NORMAL:
