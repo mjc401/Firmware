@@ -111,20 +111,20 @@ set(config_module_list
 	# Estimation modules (EKF/ SO3 / other filters)
 	#
 	modules/attitude_estimator_q
-	modules/position_estimator_inav
-	modules/ekf2
+  #modules/position_estimator_inav
+  #modules/ekf2
 	modules/local_position_estimator
 
 	#
 	# Vehicle Control
 	#
-	modules/fw_att_control
-	modules/fw_pos_control_l1
+  #modules/fw_att_control
+  #modules/fw_pos_control_l1
 	modules/gnd_att_control
 	modules/gnd_pos_control
 	modules/mc_att_control
 	modules/mc_pos_control
-	modules/vtol_att_control
+  #modules/vtol_att_control
 
 	#
 	# Logging
