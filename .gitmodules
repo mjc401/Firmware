@@ -41,3 +41,7 @@
 	path = src/modules/mocap_control
 	url = git@gitlab.rasl.ri.cmu.edu:nmichael/mocap_control.git
 	branch = feature/useful_mb_changes
+[submodule "src/modules/mocap_status_monitor"]
+	path = src/modules/mocap_status_monitor
+	url = git@gitlab.rasl.ri.cmu.edu:nmichael/mocap_status_monitor.git
+	branch = develop
